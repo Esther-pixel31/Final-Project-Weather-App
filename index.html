@@ -3,21 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Weather</title>
 </head>
 <body>
-    <form>
-        <input type="search"/> 
-        <input type="submit"/>   
-
-        <h1>London</h1>
+    <header>
+        <form id="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city.."
+            required
+            class="search-input"
+            id="search-input"
+          />
+          <input type="submit" value="Search" class="search-button" />
+        </form>
+      </header>
+      <main>
         <div class="current-weather">
-            <p>Sunny, sometimes Overcast</p>
-            <div>
-                🌥️
-            </div>
+          <div>
+            <h1 class="current-city" id="current-city">London</h1>
+            <span class="current-temperature-icon">🌥️</span
+                ><span class="current-temperature-value" id="current-temperature"
+                  >27</span
+                ><span class="current-temperature-unit">°C</span>
+          </div>
+          <div class="current-temperature">
+            <p class="current-details">
+                <span id="current-date"></span>, Sunny, sometimes overcast <br />
+                Humidity: <strong>76%</strong>, Wind: <strong>9.8km/h</strong>
+              </p>
+          </div>
         </div>
-
-    </form>
+      </main>
 </body>
 </html>
