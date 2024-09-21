@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <title>Weather</title>
 </head>
@@ -24,17 +27,18 @@
           <div>
             <h1 class="current-city" id="current-city">London</h1>
             <p class="current-details">
-                <span id="current-date"></span>, Sunny, sometimes overcast </p>
+                <span id="current-date"></span>,<br/> Sunny, sometimes overcast </p>
           
             <span class="current-temperature-icon">🌥️</span
-                ><span class="current-temperature-value" id="current-temperature"
+                ><br/>
+                <span class="current-temperature-value" id="current-temperature"
                   >27</span
                 ><span class="current-temperature-unit">°C</span>
           </div>
           <div class="current-temperature">
           <span id="current-climate"></span>
           <img src="images/humidity.png"><br/>
-                Humidity: <strong>76%</strong>, <br/><img src="images/wind.png"> <br/>Wind: <strong>9.8km/h</strong>
+                <strong>76%</strong>, <br/><img src="images/wind.png"> <br/><strong>9.8km/h</strong>
             
           </div>
         </div>
