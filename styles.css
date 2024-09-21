@@ -1,6 +1,7 @@
 header {
     border-bottom: 1px solid #f9f7fe;
     padding-bottom: 30px;
+    text-align: center; /* add this to center the search area */
   }
   
   .search-input {
@@ -11,9 +12,8 @@ header {
     padding: 10px;
     width: 30%;
     border-radius: 6px;
-    margin-left:100px ;
-    margin-right:100px ;
-
+    /* remove margin-left and margin-right, add display: inline-block */
+    display: inline-block;
   }
   
   .search-button {
@@ -23,6 +23,9 @@ header {
     color: white;
     border: none;
     padding: 20px;
-    line-height: 1;
+    line-height: 0.25;
     border-radius: 5px;
+    width: 10%;
+    /* add display: inline-block */
+    display: inline-block;
   }
