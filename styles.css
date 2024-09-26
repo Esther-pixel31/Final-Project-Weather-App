@@ -56,8 +56,7 @@ margin-bottom: 20px;
 .weather-icon {
             width: 100px;
             height: 100px;
-            background: url('https://placehold.co/100x100') no-repeat center center;
-            background-size: cover;
+            
             margin: 0 auto;
         }
         .temperature {
@@ -127,4 +126,10 @@ margin-bottom: 20px;
             background: url('https://placehold.co/40x40') no-repeat center center;
             background-size: cover;
             margin: 0 auto;
+        }
+        .weather-icon .fa-sun {
+          font-size: 100px; /* adjust the size to fit the space */
+          color: #ffbe32; /* a bright yellow-orange color for the sun */
+          text-shadow: 0 0 10px #FFD700; /* add a subtle glow effect */
+          border-radius: 50%; /* make the sun icon circular */
         }
