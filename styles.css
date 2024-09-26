@@ -71,4 +71,23 @@ header {
     position: relative;
     top: -30px;
   }
+
+  .current-temperature {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .current-temperature span {
+    margin-bottom: 10px; /* add some space between the spans */
+  }
+  
+  .current-temperature img {
+    margin-bottom: 5px; /* add a smaller margin between the images */
+  }
+  
+  .current-temperature-value {
+    font-size: 24px; /* make the temperature value larger */
+    font-weight: bold; /* make the temperature value bold */
+  }
   
