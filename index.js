@@ -1,11 +1,10 @@
-function handleSearchSubmit(event){
-event.preventDefault();
+const searchButton = document.querySelector('.search-bar button');
+const searchInput = document.getElementById('search-form-input');
+const cityElement = document.getElementById('city');
 
-let searchInput = document.querySelector("#search-form-input");
-console.log(searchInput.value);
+searchButton.addEventListener('click', handleSearchSubmit);
+
+function handleSearchSubmit() {
+  cityElement.textContent = searchInput.value;
+  searchInput.value = ''; // clear the input field
 }
-
-
-let searchFormElement = document.querySelector("#search-form");
-searchFormElement.addEventListener("submit", handleSearchSubmit);
-
