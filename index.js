@@ -12,14 +12,22 @@ const searchInput = document.getElementById('search-form-input');
 
 searchButton.addEventListener('click', handleSearchSubmit);
 
+function refreshWeather(response){
+    let temperatureElement = document.querySelector("#temperature");
+    let temperature = response.data.current.temp_c;
+
+    temperatureElement.innerHTML= Math.round(temperature);
+
+    
+
+}
 function handleSearchSubmit(event) {
   event.preventDefault();
   const city = searchInput.value;
   const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
 
-  axios.get(apiUrl)
-    .then(response => console.log(response.data))
-    .catch(error => console.error(error));
+  axios.get(apiUrl).then(refreshWeather);
+    
 
 }
 
