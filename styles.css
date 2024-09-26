@@ -140,3 +140,9 @@ form {
 .icon-rainy {
   background: url('https://placehold.co/40x40?text=Rainy') no-repeat center center;
 }
+#humidity, #wind {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5px;
+}
