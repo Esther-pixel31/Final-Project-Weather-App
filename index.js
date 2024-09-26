@@ -16,7 +16,18 @@ function refreshWeather(response){
     let temperatureElement = document.querySelector("#temperature");
     let temperature = response.data.current.temp_c;
 
-    temperatureElement.innerHTML= Math.round(temperature);
+    let humidityElement = document.querySelector("#humidity ");
+    let humidity = response.data.current.humidity;
+
+    let windElement = document.querySelector("#wind ");
+    let wind = response.data.current.wind_kph;
+
+    let cityElement = document.querySelector("#city");
+    cityElement.innerHTML = response.data.location.name;
+    
+    temperatureElement.innerHTML= `${Math.round(temperature)}°`;
+    humidityElement.innerHTML = `<i class="fas fa-tint"></i> ${humidity}%`;
+    windElement.innerHTML = `<i class="fas fa-wind"></i> ${wind}km/h`;
 
     
 
