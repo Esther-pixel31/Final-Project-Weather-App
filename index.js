@@ -6,15 +6,21 @@ function updateDateTime() {
 updateDateTime();
 setInterval(updateDateTime, 60000); // Update every minute
 
+const apiKey = 'cdaed428fc7b46b79f3221134242609';
 const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-form-input');
-const cityElement = document.getElementById('city');
 
 searchButton.addEventListener('click', handleSearchSubmit);
 
 function handleSearchSubmit(event) {
-    event.preventDefault();
-    cityElement.textContent = searchInput.value;
-    searchInput.value = ''; 
-    }
+  event.preventDefault();
+  const city = searchInput.value;
+  const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+
+  axios.get(apiUrl)
+    .then(response => console.log(response.data))
+    .catch(error => console.error(error));
+
+}
+
 
