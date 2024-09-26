@@ -1,48 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <title>Weather</title>
 </head>
 <body>
-    <header>
-        <form id="search-form">
-          <input
-            type="search"
-            placeholder="Enter a city.."
-            required
-            class="search-input"
-            id="search-input"
-          />
-          <input type="submit" value="Search" class="search-button" />
-        </form>
-      </header>
-      <main>
-        <div class="current-weather">
-          <div>
-            <h1 class="current-city" id="current-city">London</h1>
-            <p class="current-details">
-                <span id="current-date"></span>,<br/> Sunny, sometimes overcast </p>
-          
-            <span class="current-temperature-icon">🌥️</span
-                ><br/>
-                <span class="current-temperature-value" id="current-temperature"
-                  >27</span
-                ><span class="current-temperature-unit">°C</span>
-          </div>
-        
-          <div class="current-temperature">
-              <span id="current-climate"></span>
-              <img src="images/humidity.png"><br/>
-                <strong>76%</strong>, <br/><img src="images/wind.png"> <br/><strong>9.8km/h</strong>
-            
-          </div>
-        </div> 
-      </main>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search location">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="location">London</div>
+        <div class="description">Sunny, sometimes overcast</div>
+        <div class="weather-icon"></div>
+        <div class="temperature">27°</div>
+        <div class="details">
+            <div>
+                <i class="fas fa-tint"></i>
+                <span>36-38%</span>
+            </div>
+            <div>
+                <i class="fas fa-wind"></i>
+                <span>24km/h</span>
+            </div>
+        </div>
+        <div class="indicators">
+            <div>
+                <span class="high">High</span>
+                <span>UV</span>
+            </div>
+            <div>
+                <span class="low">Low</span>
+                <span>Pollution</span>
+            </div>
+            <div>
+                <span class="moderate">Moderate</span>
+                <span>Pollen</span>
+            </div>
+        </div>
+        <div class="forecast">
+            <div>
+                <div class="icon"></div>
+                <div class="temp">29°</div>
+                <div class="day">Tomorrow</div>
+            </div>
+            <div>
+                <div class="icon"></div>
+                <div class="temp">27°</div>
+                <div class="day">Saturday</div>
+            </div>
+            <div>
+                <div class="icon"></div>
+                <div class="temp">22°</div>
+                <div class="day">Sunday</div>
+            </div>
+            <div>
+                <div class="icon"></div>
+                <div class="temp">22°</div>
+                <div class="day">Monday</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
