@@ -31,10 +31,15 @@ function refreshWeather(response) {
   // Use OpenWeatherMap API to fetch weather description
   const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${response.data.location.name}`;
   axios.get(apiUrl).then(response => {
-    const weatherDescription = response.data.current.condition.text;
-    let descriptionElement = document.querySelector("#description");
-    descriptionElement.textContent = weatherDescription;
-  });
+  const weatherDescription = response.data.current.condition.text;
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.textContent = weatherDescription;
+
+  const weatherIconUrl = response.data.current.condition.icon;
+  let weatherIconElement = document.querySelector("#weather-icon");
+  weatherIconElement.innerHTML = `<img src="${weatherIconUrl}" alt="Weather Icon">`;
+  
+});
 
   temperatureElement.innerHTML = `${Math.round(temperature)}°`;
   humidityElement.innerHTML = `<i class="fas fa-tint"></i> ${humidity}%`;
