@@ -13,9 +13,16 @@ form {
   background: #ffffff;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 200px;
+  margin-bottom: 100px;
   padding: 20px;
   text-align: center;
+  /* Set a fixed height */
+  overflow-y: auto; /* Make the form scrollable */
+  border: 1px solid #ccc; /* Add a border to make all edges visible */
+  box-sizing: border-box; /* Include the border in the width and height calculations */
 }
+
 .header {
   display: flex;
   justify-content: center;
@@ -190,4 +197,12 @@ form {
   width: 100px;
   height: 100px;
   display: block;
+}
+
+.forecast .icon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  
+ 
 }
