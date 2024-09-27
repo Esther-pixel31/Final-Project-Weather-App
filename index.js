@@ -6,6 +6,7 @@ function updateDateTime() {
 updateDateTime();
 setInterval(updateDateTime, 60000); // Update every minute
 
+const proxyUrl = 'https://api.weatherapi.com/v1/current.json';
 const apiKey = 'cdaed428fc7b46b79f3221134242609';
 const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-form-input');
@@ -23,12 +24,11 @@ function handleSearchSubmit(event) {
     refreshWeather(response);
     getForecastData(response.data.location.name);
   });
-
   searchInput.value = '';
 }
 
 function getForecastData(city) {
-  const forecastApiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=5`;
+  const forecastApiUrl = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=5`;
   axios.get(forecastApiUrl).then(response => {
     const forecastData = response.data.forecast.forecastday.slice(1, 5); // Get the next 4 days
     forecastDayElement.innerHTML = "";
@@ -70,7 +70,7 @@ function refreshWeather(response) {
   let weatherId = weather.code;
 
   // Use OpenWeatherMap API to fetch weather description
-  const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${response.data.location.name}`;
+  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${response.data.location.name}`;
   axios.get(apiUrl).then(response => {
   const weatherDescription = response.data.current.condition.text;
   let descriptionElement = document.querySelector("#description");
@@ -133,7 +133,7 @@ function refreshWeather(response) {
 function handleSearchSubmit(event) {
   event.preventDefault();
   const city = searchInput.value;
-  const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
 
   axios.get(apiUrl).then(refreshWeather);
     
