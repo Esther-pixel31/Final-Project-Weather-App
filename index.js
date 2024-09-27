@@ -17,7 +17,7 @@ searchButton.addEventListener('click', handleSearchSubmit);
 function handleSearchSubmit(event) {
   event.preventDefault();
   const city = searchInput.value;
-  const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
 
   axios.get(apiUrl).then(response => {
     refreshWeather(response);
