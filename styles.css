@@ -61,8 +61,7 @@ form {
   width: 100px;
   height: 100px;
   margin: 0 auto;
-  background: url('https://placehold.co/100x100') no-repeat center center;
-  background-size: cover;
+  
 }
 .temperature {
   font-size: 48px;
@@ -98,7 +97,7 @@ form {
 .indicators span {
   display: block;
   font-size: 14px;
-  color: #888;
+  color: #000000;
 }
 .indicators .high {
   color: #ff5722;
@@ -157,12 +156,17 @@ form {
 
 #humidity {
   border-radius: 30px;
-  padding: 15px;
+  padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 #wind {
   border-radius: 30px;
-  padding: 15px;
+  padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.icon-partly-cloudy {
+  background-image: url('partly-cloudy-icon.png');
+  background-size: 100% 100%;
 }
