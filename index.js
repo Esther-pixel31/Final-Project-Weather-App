@@ -12,65 +12,35 @@ const searchInput = document.getElementById('search-form-input');
 
 searchButton.addEventListener('click', handleSearchSubmit);
 
-function getIconClass(condition) {
-  let iconClasses = {
-    'Sunny': 'icon-sunny',
-    'Partly Cloudy': 'icon-partly-cloudy',
-    'Cloudy': 'icon-cloudy',
-    'Overcast': 'icon-overcast',
-    'Light Rain': 'icon-light-rain',
-    'Heavy Rain': 'icon-heavy-rain',
-    'Thunderstorm': 'icon-thunderstorm',
-    'Light Snow': 'icon-light-snow',
-    'Heavy Snow': 'icon-heavy-snow',
-    'Light Sleet': 'icon-light-sleet',
-    'Heavy Sleet': 'icon-heavy-sleet',
-    'Light Freezing Rain': 'icon-light-freezing-rain',
-    'Heavy Freezing Rain': 'icon-heavy-freezing-rain',
-    'Light Drizzle': 'icon-light-drizzle',
-    'Heavy Drizzle': 'icon-heavy-drizzle',
-    'Light Freezing Drizzle': 'icon-light-freezing-drizzle',
-    'Heavy Freezing Drizzle': 'icon-heavy-freezing-drizzle',
-    'Light Rain Shower': 'icon-light-rain-shower',
-    'Heavy Rain Shower': 'icon-heavy-rain-shower',
-    'Light Sleet Shower': 'icon-light-sleet-shower',
-    'Heavy Sleet Shower': 'icon-heavy-sleet-shower',
-    'Light Hail': 'icon-light-hail',
-    'Heavy Hail': 'icon-heavy-hail',
-    'Light Hail Shower': 'icon-light-hail-shower',
-    'Heavy Hail Shower': 'icon-heavy-hail-shower',
-    'Light Thunderstorm': 'icon-light-thunderstorm',
-    'Heavy Thunderstorm': 'icon-heavy-thunderstorm',
-    'Light Fog': 'icon-light-fog',
-    'Heavy Fog': 'icon-heavy-fog',
-    'Light Freezing Fog': 'icon-light-freezing-fog',
-    'Heavy Freezing Fog': 'icon-heavy-freezing-fog'
-  };
-  return iconClasses[condition];
-}
+function refreshWeather(response) {
+  let temperatureElement = document.querySelector("#temperature");
+  let temperature = response.data.current.temp_c;
 
-function refreshWeather(response){
-    let temperatureElement = document.querySelector("#temperature");
-    let temperature = response.data.current.temp_c;
+  let humidityElement = document.querySelector("#humidity");
+  let humidity = response.data.current.humidity;
 
-    let humidityElement = document.querySelector("#humidity ");
-    let humidity = response.data.current.humidity;
+  let windElement = document.querySelector("#wind");
+  let wind = response.data.current.wind_kph;
 
-    let windElement = document.querySelector("#wind ");
-    let wind = response.data.current.wind_kph;
+  let cityElement = document.querySelector("#city");
+  cityElement.innerHTML = response.data.location.name;
 
-    let cityElement = document.querySelector("#city");
-    cityElement.innerHTML = response.data.location.name;
-    
+  let weather = response.data.current.condition;
+  let weatherId = weather.code;
+
+  // Use OpenWeatherMap API to fetch weather description
+  const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${response.data.location.name}`;
+  axios.get(apiUrl).then(response => {
+    const weatherDescription = response.data.current.condition.text;
     let descriptionElement = document.querySelector("#description");
+    descriptionElement.textContent = weatherDescription;
+  });
 
-    temperatureElement.innerHTML= `${Math.round(temperature)}°`;
-    humidityElement.innerHTML = `<i class="fas fa-tint"></i> ${humidity}%`;
-    windElement.innerHTML = `<i class="fas fa-wind"></i> ${wind.toFixed(0)}km/h`;
-    descriptionElement.innerHTML = description;
+  temperatureElement.innerHTML = `${Math.round(temperature)}°`;
+  humidityElement.innerHTML = `<i class="fas fa-tint"></i> ${humidity}%`;
+  windElement.innerHTML = `<i class="fas fa-wind"></i> ${wind.toFixed(0)}km/h`;
 
-
-    let uvIndex = response.data.current.uv;
+  let uvIndex = response.data.current.uv;
   let pollutionIndex = response.data.current.pollution;
   let pollenIndex = response.data.current.pollen;
 
