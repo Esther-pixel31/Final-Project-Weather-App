@@ -10,25 +10,39 @@ const apiKey = 'cdaed428fc7b46b79f3221134242609';
 const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-form-input');
 const forecastDayElement = document.querySelector("#forecastday");
-const forecastItems = forecastDayElement.children;
+
 
 searchButton.addEventListener('click', handleSearchSubmit);
+
+function handleSearchSubmit(event) {
+  event.preventDefault();
+  const city = searchInput.value;
+  const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+
+  axios.get(apiUrl).then(response => {
+    refreshWeather(response);
+    getForecastData(response.data.location.name);
+  });
+
+  searchInput.value = '';
+}
 
 function getForecastData(city) {
   const forecastApiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=5`;
   axios.get(forecastApiUrl).then(response => {
     const forecastData = response.data.forecast.forecastday.slice(1, 5); // Get the next 4 days
-    forecastItems.forEach((item, index) => {
-      const dayNameElement = item.querySelector(".day");
-      const iconElement = item.querySelector(".icon");
-      const tempElement = item.querySelector(".temp");
-
-      dayNameElement.textContent = getDayName(forecastData[index].date);
-      iconElement.innerHTML = `<img src="${forecastData[index].day.condition.icon}" alt="Weather Icon">`;
-      tempElement.textContent = `${forecastData[index].day.maxtemp_c}°`;
-      iconElement.innerHTML = `<img src="${forecastData[index].day.condition.icon}" alt="Weather Icon" onerror="this.src='fallback-icon.png'">`;
-
-      console.log(forecastData);
+    forecastDayElement.innerHTML = "";
+    forecastData.forEach((day, index) => {
+      const forecastDayItem = document.createElement("div");
+      const dayName = getDayName(day.date);
+      const iconUrl = day.day.condition.icon;
+      const temp = day.day.maxtemp_c;
+      forecastDayItem.innerHTML = `
+        <div class="icon"><img src="${iconUrl}" alt="Weather Icon"></div>
+        <div class="temp">${temp}°</div>
+        <div class="day">${dayName}</div>
+      `;
+      forecastDayElement.appendChild(forecastDayItem);
     });
   });
 }
@@ -38,6 +52,7 @@ function getDayName(dateString) {
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   return days[date.getDay()];
 }
+
 function refreshWeather(response) {
   let temperatureElement = document.querySelector("#temperature");
   let temperature = response.data.current.temp_c;
