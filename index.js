@@ -25,13 +25,28 @@ function refreshWeather(response){
     let cityElement = document.querySelector("#city");
     cityElement.innerHTML = response.data.location.name;
     
+    let descriptionElement = document.querySelector("#description");
+    let weatherCode = response.data.current.condition.code;
+
+    let weatherDescriptions = {
+    '1000': 'Sunny',
+    '1003': 'Partly Cloudy',
+    '1006': 'Cloudy',
+    '1009': 'Overcast',
+    '1063': 'Light Rain',
+    '1069': 'Heavy Rain',
+    '1072': 'Thunderstorm',
+    // Add more weather codes as needed
+  };
+
+  let description = weatherDescriptions[weatherCode];
+
     temperatureElement.innerHTML= `${Math.round(temperature)}°`;
     humidityElement.innerHTML = `<i class="fas fa-tint"></i> ${humidity}%`;
-    windElement.innerHTML = `<i class="fas fa-wind"></i> ${wind}km/h`;
-
-    
-
+    windElement.innerHTML = `<i class="fas fa-wind"></i> ${wind.toFixed(0)}km/h`;
+    descriptionElement.innerHTML = description;
 }
+
 function handleSearchSubmit(event) {
   event.preventDefault();
   const city = searchInput.value;
@@ -39,7 +54,7 @@ function handleSearchSubmit(event) {
 
   axios.get(apiUrl).then(refreshWeather);
     
-
+  searchInput.value = '';
 }
 
 
